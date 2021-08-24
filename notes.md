@@ -1,3 +1,6 @@
+I aim to commit my code into my GitHub at least once a day: https://github.com/VanessaTsang888/using-react-hooks
+So that my mentor can do my code review for me.
+
 Course Overview:
 This course uses Next.js on coding projects.
 
@@ -66,7 +69,7 @@ Home or root page of our app.
 
 To launch app: npm run dev
 
-OUR FIRST REACT HOOK setState:
+1- OUR FIRST REACT HOOK setState:
 
 -> index.js -> we want to hook into the input field that has a placeholder text and every time its value changes, that value gets saved as React state and
 then output that value as text right below the input field.
@@ -85,3 +88,28 @@ Now, on every input field change event, add to the historyList array the current
 
 Output the history array on every keystroke. A simple historyList with a map in our JSX-rendered output does this.
 -> create a JS expression that maps over historyList and then renders each item of the historyList array. Now we have 2 state items being traked, inputText and the historyList array.
+
+I have a repo for this course in my GitHub and have committed my code up there: https://github.com/VanessaTsang888/using-react-hooks
+
+2 - Uing useRef T0 Enable MouseOver:
+Another common Hook.
+
+What:
+Primarily used to allow access directly to an element in the DOM.
+Then we can work with that element, to change what the users sees.
+
+A seniro that directly access an HTML element:
+Program a hover-over effect that turns a black & white image to colour when user hovers over it/mouse over it and back to b&w when user hovers out of it.
+
+1. Create a new JS file named: 'ImageChangeOnMouseOver' in our pages directory. The name of that file becomes our url route when user browse to the site.
+2. Write a simple React functional component called: 'ImageChangeOnMouseOver', with 2 image elements, that each point to their own b&w pic.
+3. The way that Next.js handles static resources like pictures is, by default, anything we put in the folder /public is available to a running app, as if that were in the base URL of the website.
+4. Setting our 2-source attributes to two separate b&w images.
+
+Why I don't have a src folder? I've had to create a src folder to match with instructures folders.
+I ran the app but not working as expected as:
+
+-> ImageToggleOnMouseOver -> onMouseOver -> the lowercase 'o' was uppercase which is wrong.
+-> ImageChangeOnMouseOver -> within the component, the extension: .jpg was missing on 2 of the paths.
+
+Now working and taken a screenshot of it. Comitted to my GitHub.

@@ -1,7 +1,5 @@
 /* Home or root page of our app. */
 
-import React, { useState } from "react";
-
 /*
 
 import Head from "next/head";
@@ -88,6 +86,9 @@ export default function Home() {
 // A JS expression that maps over historyList and then renders each item of the historyList array. Now I have 2 state items being traked,
 // inputText and the historyList array.
 // In the UI I can now see not only the rendered text, but also the istory of the state changes.
+
+import React, { useState } from "react";
+
 const inputElement = () => {
   const [inputText, setInputText] = useState("");
   const [historyList, setHistoryList] = useState([]);

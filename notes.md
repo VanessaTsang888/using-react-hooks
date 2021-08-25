@@ -141,3 +141,18 @@ component is first rendered and then on every subsquent component update. If thi
 Colourising on Scroll based on if the photos is in full view of the browser and allow for scrolling to trigger the calculation to determin that.
 
 We use onMouseOver and onMouseOut to assign events to the image tag.
+
+5- Improving & Fixing Our Scrolling Colourising React App;
+
+The pages loaded all images showed as b&w instead of the ones fully in view in colour and rest in b&w. Once we scrolled down the page, everything was good, but not the initial display. This is wrong and we need to fix this.
+
+    // On initial page render, set the images in view to the colour images:
+    setInView(isInView());
+
+But now useEffect runs after the first render is completed, and in our ImageToggleOnScroll we set the default image to b&w. To fix this we need to show the image when component first runs as the DOM has not been constructed and we don't know yet whether this image will be in view or not. So we need to add at top of this component a new state: isLoading.
+
+    // Set 'isLoading' to false. This state change will allow React to react and do another render but this time with 'isLoading' set to false:
+    setIsLoading(false);
+
+    To make this work we need to add to the component return statement which renders the component a check in the img element source tag for 'isLoading'. So add
+    a Ternary expression that overrides displaying the secondary and primary images with a transpartent GIF if isLoading is true.

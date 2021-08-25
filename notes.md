@@ -110,6 +110,34 @@ Why I don't have a src folder? I've had to create a src folder to match with ins
 I ran the app but not working as expected as:
 
 -> ImageToggleOnMouseOver -> onMouseOver -> the lowercase 'o' was uppercase which is wrong.
+-> src folder -> store all functional component in here incl. the 'ImageToggleOnMouseOver'.
 -> ImageChangeOnMouseOver -> within the component, the extension: .jpg was missing on 2 of the paths.
 
 Now working and taken a screenshot of it. Comitted to my GitHub.
+
+3 - LEARNING HOW TO USE THE useEffect HOOK:
+
+It is very similar to componentDidMount, componentDidUpdate, and componentWillUnmount in React class components.
+0:20
+Can think of useEffect as a way to add side effects to a functional components.
+
+We often talk about Side effects of functional components as a bad thing?
+side effects === bad things?
+
+functional components can be free of side effects. This means if we call one with the same parameters over and over again, we'll get exactly the same results rturned. This is called a pure component.
+
+-> useEffect causes side effects to React functional components, after the component is first rendered a function associated with useEffect is executed.
+This is not always a bad things:
+Adding and removing DOM listeners is great example. useEffect is the perfect place to add them. When component go away we want to reomve these listeners, avoiding any potential resource leaks in our app. Pure component guarantees no side effect, non pure may also have none.
+
+The snytax for useEffect hook is:
+The first parameter must be a function.
+We return another function. To test do a console.log.
+The second parameter is an array that contains a list of dependencies for the component. If this is left out then the first parameter is executed both when the
+component is first rendered and then on every subsquent component update. If this arry is empty, then the function associated with useEffect as the first paramerer is only run once when the component is first rendered. If I want the component to be rendered based on certain conditions, I need to have all the values in this array that change or the values that the rendered output is dependent on.
+
+4 - Using useEffect, useRef and useState for Colourising on Scroll:
+
+Colourising on Scroll based on if the photos is in full view of the browser and allow for scrolling to trigger the calculation to determin that.
+
+We use onMouseOver and onMouseOut to assign events to the image tag.

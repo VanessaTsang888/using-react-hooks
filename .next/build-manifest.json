@@ -14,10 +14,10 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/": [
+    "/ImageChangeOnMouseOver": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/index.js"
+      "static/chunks/pages/ImageChangeOnMouseOver.js"
     ],
     "/ImageChangeOnScroll": [
       "static/chunks/webpack.js",

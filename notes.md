@@ -156,3 +156,22 @@ But now useEffect runs after the first render is completed, and in our ImageTogg
 
     To make this work we need to add to the component return statement which renders the component a check in the img element source tag for 'isLoading'. So add
     a Ternary expression that overrides displaying the secondary and primary images with a transpartent GIF if isLoading is true.
+
+5 - Adding Side Effect to our Scroller Component:
+
+In the last lecture I used the useEffect hook and the first paramter I passed into it is a function that gets executed after the component has completely rendered the first time. Then I passed-in an empty dependency array as the second parameter, I am telling it to ONLY run the function I've passed-in AFTER the component renders and not on subsequent updates. Dependency array is often used in optimising your component's execution. To demonstrate how we may use this:
+
+-> component -> ImageChangeOnScroll.js -> this component is used to render the list of speaker images.
+-> ImageChangeOnScroll.js -> add a moseover event to every speaker image that sets the title of our browser window to the speaker ID. -> maintain in state what our current mouse over speak ID is so need to create that state:
+
+1. add useState to the import statement.
+2. write the state instant: const [currentSpeakerId, setCurrentSpeakerId] = useState(0);
+3. Listen for the mouseover event by adding the attribute 'onMouseOver' to our div surrounding our ImageToggleOnScroll component.
+4. In the mouseover event execution, call setCurrentSpeakerId to the current speaker that this image component renders, and then console.log that speaker ID for debugging since the change is invisible to the UI and so we know what happened.
+5. Write a useEffect hook in this component. This is where I want to create the side effect, which is to update the title of current browser to the current speaker ID. So reference useEffect in the import statement. Then make a call to it at top of the component. The first parameter is a function that gets executes after the componet renders and also after it updates. Get this fn to assign to window.document.title of the browser, the speaker ID, then output to the console that we did this. Leaving out the dependency array will cuase the fn to execute on every component update which is what I want for now.
+6. Add a counter at top of app that displays the total number of mouse events that have occurred while the app is running. So need to create state for that: const [mouseEventCnt, setMouseEventCnt] = useState(0);
+7. In the onMouseOver event, we need to increment the counter: setMouseEventCnt(mouseEventCnt + 1);
+   Then in the return, output that value: <span>mouseEventCnt: ${mouseEventCnt}</span>{" "}
+8. Testing in the UI: when I mouseover the first speaker, the title in the URL shows: SpeakerId: 1124, and when I mouse over the next one, SpeakerId: 823 shows in the title as I expected. Looking at the console.log, when I mouseover the first images, the event is logged, the event updates both the current speaker and the event count, causing component to update, which means the fn in useEffect is executed again and logged on the console. useEffect is called on first rendered and also on component updates. This is what is happening now and what I expected. But when I mouse over the first speaker, mouse out, and mouse over again, the browser title don't change as expected, but on the console - useEffect is called again and so is the assignment to windows.document.title, eventhough I'm just setting it to what it's already set to - No Change! Next, lecture, I will optimise this redundant assignment to prevent this using the useEffect dependency array.
+
+I have tested and found a '$' sign on the counter which is not what I expected. Although, the app works, I'm seeing an 404 error in the console that is pointing to line: 1. I've checked my code and I don't see a problem with my code.

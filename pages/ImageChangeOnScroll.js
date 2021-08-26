@@ -18,6 +18,8 @@ const ImageChangeOnScroll = () => {
   /* Listen for the mouseover event. Mouseover event execution - calling 'setCurrentSpeakerId' to the current speaker that this image component renders.
   Console.log that speaker ID as changes is invisible to the UI and I need know what happens when I test this event by mouseover an image. */
   // Assign the fn inside useEffect Hook to window.document.title of the browser.
+  /* The dependency array in the useEffect Hook allow us to keep useEffect from being called when it wasn't necessary, i.e. mouse over and out multiple time on the same speaker image
+  shouldn't call useEffect over and over again as its the same speaker ID */
   useEffect(() => {
     window.document.title = `SpeakerId: ${currentSpeakerId}`;
     console.log(`useEffect: setting title to ${currentSpeakerId}`);

@@ -185,3 +185,11 @@ The speaker ID and the browser title is working as expected from the user's pers
 Now, onMouseOver is called over and over as I expect, but useEffect is not called at all as the current speaker ID did not change. Mousing over the second peaker, that does cause useEffect to be as the speaker ID changes and the browser title window changes also as expected. This is the optimisation done. So the dependency array has allowed us to keep useEffect from being called when it wasn't necessary.
 
 The reason for the mouse counter on the page is to force React to rerender the component and then the dependency array in useEffect help us keep the browser title from being set to the same thing multiple times. Typically, on React page, there is more than one state value changing, so it's not unrealistic to have a scenario like this.
+
+7 - Take Aways:
+
+1. useState lets us track state easily.
+2. useEffect gives us a clean way to set things, typically state, when component start and finish.
+3. useRef gives us the control we need to get to DOM elements when other means are not so straightforward.
+
+Next module will develop a conference website with a signup field that includes email validation, and configuring a global option for whether or not to show it. Learn how to use the useReducer hook. React Hooks simple rules.

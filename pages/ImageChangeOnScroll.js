@@ -1,7 +1,8 @@
-/* Show colorising when the mouse enters and leaves each image with new code that displays images in a vertical list so wehave something to scroll.
+/* Show colorising when the mouse enters and leaves each image with new code that displays images in a vertical list so wehave something to scroll. 
 
 Writing a JS expression with speaker id allows us to dynamically use the speaker images within the speakers folder. Then maps will iterate over them.
 Each ID then gets it's own 'ImageToggleOnScroll' component rendered and because they are separated by divs they stack vertically. */
+
 // To add a 'moseover event' to every speaker image that sets the title of our browser window to the speaker ID, need to maintain in state what the
 // current mouseover speak ID is so need to create that state -> useState Hook:
 import React, { useState, useEffect } from "react";
@@ -20,11 +21,11 @@ const ImageChangeOnScroll = () => {
   useEffect(() => {
     window.document.title = `SpeakerId: ${currentSpeakerId}`;
     console.log(`useEffect: setting title to ${currentSpeakerId}`);
-  });
+  }, [currentSpeakerId]);
   return (
     <div>
       {/* Output the counter value that is inside the onMouseOver attribute */}
-      <span>mouseEventCnt: ${mouseEventCnt}</span>
+      <span>mouseEventCnt: {mouseEventCnt}</span>
       {[1124, 187, 823, 1269, 1530].map((speakerId) => {
         return (
           <div

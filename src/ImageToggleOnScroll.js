@@ -70,7 +70,7 @@ const ImageToggleOnScroll = ({ primaryImg, secondaryImg }) => {
     <img
       src={
         isLoading
-          ? "'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' // 1x1gif"
+          ? "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
           : inView
           ? secondaryImg
           : primaryImg

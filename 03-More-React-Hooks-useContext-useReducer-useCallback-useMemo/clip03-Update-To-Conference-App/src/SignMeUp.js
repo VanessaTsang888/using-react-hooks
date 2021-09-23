@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 // Add an onClick listener to the button that calls the passed-in property fn, signuCallback, with the current email.
 // Then clears the input field and alert to confirmation message to the browser.
 // Now we have a simple signup form component that's embedded in our site header component.
-// 
+//
 const SignMeUp = ({ signupCallback }) => {
   const [email, setEmail] = useState('');
 
@@ -20,18 +20,28 @@ const SignMeUp = ({ signupCallback }) => {
             placeholder="Enter Email"
             type="email"
             name="email"
-            value={email} {/* Set the value of the input to email */}
+            value={email}
             onChange={(e) => {
-              setEmail(e.target.value); {/* and to the onChange event, assign the input value as the user enters text */}
+              setEmail(e.target.value);
+              {
+                /* and to the onChange event, assign the input value as the user enters text */
+              }
             }}
           />
           &nbsp;
           <button
-            disabled={!email.includes('@')} {/* disabled property to reflect as simple email valid rule */}
-            onClick={() => { {/* onClick listener to the button that calls the passed-in property fn, signu Callback */}
-              signupCallback(email); {/* with the current email */}
+            disabled={!email.includes('@')}
+            onClick={() => {
+              /* onClick listener to the button that calls the passed-in property fn, signu Callback */
+              signupCallback(email);
+              {
+                /* with the current email */
+              }
               setEmail('');
-              alert('signup confirmed'); {/* clear input field, alert to confirmation message to the browser */}
+              alert('signup confirmed');
+              {
+                /* clear input field, alert to confirmation message to the browser */
+              }
             }}
             className="btn"
             type="submit"

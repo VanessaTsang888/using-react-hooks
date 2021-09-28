@@ -24,7 +24,9 @@ const pageToShow = (pageName) => {
 // Pass the attributes value to the provider which can be any JS object.
 // This one is called 'configValue' and added an attribute to it 'showSpeakerSpeakingDays' and set that attribut to ture for now.
 // Assign that to the value attribut of the ConfigContext.Provider.
+// Implement config options in React app.
 const configValue = {
+  showSignMeUp: true,
   showSpeakerSpeakingDays: true,
 };
 const App = ({ pageName }) => {

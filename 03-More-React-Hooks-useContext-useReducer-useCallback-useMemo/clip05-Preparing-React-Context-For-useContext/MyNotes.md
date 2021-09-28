@@ -1,3 +1,6 @@
+Install mode models: npm install
+To test our App so far use this command: npm run dev
+
 PREPARING REACT CONTEXT FOR USE WITH useContext Hook:
 
 useContext Hook works off the Context API: https://reactjs.org/docs/context.html
@@ -21,4 +24,32 @@ ConfigContext.Provider: value={configValue}
 
 When we created our Speaker and Home pages, we had them both call the App component with a property to differentiate that is pageName="Speaker"
 or pageName="Home". That App component is where we want to create our shared Context for the entire app as all the routes we ever plan to
-make will shre this App component. 
+make will shre this App component.
+
+Clip 06: Using useContext to Access Global Configuration from React context API:
+
+Implement Config options in React App:
+-> SingMeUp.js -> import the configContext from the App Component.
+-> reference the useContext Hook with the ConfigContext as the argument.
+-> Within the SingMeUp component, check the flag, and if flag is false, don't render our signup:
+return context..showSignMeUp === flase ? null : (...)
+Now the signup on home and speakers page will disapear. When set to true, the signup will appear again.
+
+// Pull in Context by importing ConfigContext from App.js where we have exported it.
+// Get a reference to our Context with our useContext Hook:
+// Checkboxes are displayed, we check our 'showSpeakerSpeakingDays' config value from context,
+
+Test our App so far on the UI: npm run dev
+Now I can see our Saturday/Sunday checkboxes.
+
+Clip 07: useReducer Is What useState is built on:
+
+1. useState is built with useReducer under it.
+2. Reducer means - a function that takes in previous state as the first parameter, an action as the second parameter and returns a new state.
+
+Now with the useReducer, dispatch and in action.
+Now we can create for action types as we need them and we've got a very cler place to do our state reductions. We got a very clear
+place to do our state reductions.
+Now auto refresh the page, dispatched and in action.
+
+in next clip, we will will add a couple more actions to our reducer so we can handle the favouring and unfavouring of speakers.

@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext, useReducer } from 'react';
 import { Header } from '../src/Header';
 import { Menu } from '../src/Menu';
 import SpeakerData from './SpeakerData';
 import SpeakerDetail from './SpeakerDetail';
+// Pull in Context by importing ConfigContext from App.js where we have exported it.
+import { ConfigContext } from './App';
 
 const Speakers = ({}) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
 
-  const [speakerList, setSpeakerList] = useState([]);
+  // const [speakerList, setSpeakerList] = useState([]);
+  // Dispatch and action keywords
+  function speakersReducer(state, action) {
+    switch (action.type) {
+      case 'setSpeakerList': {
+        return action.data;
+      }
+      default:
+        return state;
+    }
+  }
+  // calling dispatch is like calling SpeakersReducer
+  const [speakerList, dispatch] = useReducer(speakersReducer, []);
+
   const [isLoading, setIsLoading] = useState(true);
+
+  // Get a reference to our Context with our useContext Hook:
+  const context = useContext(ConfigContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -22,7 +40,14 @@ const Speakers = ({}) => {
       const speakerListServerFilter = SpeakerData.filter(({ sat, sun }) => {
         return (speakingSaturday && sat) || (speakingSunday && sun);
       });
-      setSpeakerList(speakerListServerFilter);
+      // setSpeakerList(speakerListServerFilter);
+      // data set to an array with all our speakers which matches our reducer.
+      // when the reducer gets called by the dispatch method, the new state is returned, its jus the data passed in as the data attribut to the action object.
+
+      dispatch({
+        type: 'setSpeakerList',
+        data: speakerListServerFilter,
+      });
     });
     return () => {
       console.log('cleanup');
@@ -69,37 +94,40 @@ const Speakers = ({}) => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-
+  // Checkboxes are displayed, we check our 'showSpeakerSpeakingDays' config value from context,
   return (
     <div>
       <Header />
       <Menu />
       <div className="container">
         <div className="btn-toolbar  margintopbottom5 checkbox-bigger">
-          <div className="hide">
-            <div className="form-check-inline">
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={handleChangeSaturday}
-                  checked={speakingSaturday}
-                />
-                Saturday Speakers
-              </label>
+          {context.showSpeakerSpeakingDays === false ? null : (
+            <div className="hide">
+              <div className="form-check-inline">
+                <label className="form-check-label">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    onChange={handleChangeSaturday}
+                    checked={speakingSaturday}
+                  />
+                  Saturday Speakers
+                </label>
+              </div>
+              <div className="form-check-inline">
+                <label className="form-check-label">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    onChange={handleChangeSunday}
+                    checked={speakingSunday}
+                  />
+                  Sunday Speakers
+                </label>
+              </div>
             </div>
-            <div className="form-check-inline">
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={handleChangeSunday}
-                  checked={speakingSunday}
-                />
-                Sunday Speakers
-              </label>
-            </div>
-          </div>
+          )}
+          ;
         </div>
         <div className="row">
           <div className="card-deck">
